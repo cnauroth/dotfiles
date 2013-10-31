@@ -144,8 +144,14 @@ set -o notify
 # Don't use ^D to exit
 set -o ignoreeof
 
+export ANT_HOME=/usr/share/ant
+#export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
+export MAVEN_HOME=/usr/share/maven
 export MAVEN_OPTS='-Xmx1G'
 export P4PORT=perforce.corp.dig.com:1666
+export SBT_HOME=~/sbt
+export PATH=$PATH:$SBT_HOME/bin
 
 # Don't put duplicate lines in the history.
 export HISTCONTROL="ignoredups"
@@ -174,10 +180,14 @@ if [[ $OSTYPE == *cygwin* ]]; then
     alias c:='cd /cygdrive/c'
 fi
 
-if [[ $OSTYPE == *darwin* ]]; then
-    # My Mac has Maven 3.0.3 as the default, but I need 2.2.1 by default.
-    export MAVEN_HOME=/usr/share/java/maven-2.2.1
-    alias mvn="$MAVEN_HOME/bin/mvn"
-    alias p4='~/Downloads/p4'
-    alias octave='/Applications/Octave.app/Contents/Resources/bin/octave'
-fi
+#if [[ $OSTYPE == *darwin* ]]; then
+#    # My Mac has Maven 3.0.3 as the default, but I need 2.2.1 by default.
+#    export MAVEN_HOME=/usr/share/java/maven-2.2.1
+#    alias mvn="$MAVEN_HOME/bin/mvn"
+#    alias p4='~/Downloads/p4'
+#    alias octave='/Applications/Octave.app/Contents/Resources/bin/octave'
+#fi
+
+function title() {
+    echo -ne "\033]0;$1\007"
+}
