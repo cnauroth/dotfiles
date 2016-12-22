@@ -144,14 +144,15 @@ set -o notify
 # Don't use ^D to exit
 set -o ignoreeof
 
-export ANT_HOME=/usr/share/ant
-#export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
-export MAVEN_HOME=/usr/share/maven
+export ANT_HOME=~/apache-ant-1.9.7
+export FINDBUGS_HOME=~/findbugs-1.3.9
+export GRADLE_HOME=~/gradle-3.2
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+export MAVEN_HOME=~/apache-maven-3.3.9
 export MAVEN_OPTS='-Xmx1G'
-export P4PORT=perforce.corp.dig.com:1666
-export SBT_HOME=~/sbt
-export PATH=$PATH:$SBT_HOME/bin
+export SCALA_HOME=~/scala-2.12.0
+
+export PATH=$ANT_HOME/bin:$GRADLE_HOME/bin:$MAVEN_HOME/bin:$SCALA_HOME/bin:$PATH
 
 # Don't put duplicate lines in the history.
 export HISTCONTROL="ignoredups"
@@ -188,6 +189,41 @@ fi
 #    alias octave='/Applications/Octave.app/Contents/Resources/bin/octave'
 #fi
 
+# Given a timestamp represented as seconds since epoch, convert it to ISO 8601
+# format.  The timestamp is interpreted in the system time zone.  The function
+# also accepts an optional argument that overrides the system time zone by
+# setting TZ.
+#
+# Unfortunately, the date utility is not standardized across platforms, so we
+# need to detect GNU vs. BSD and call the command correctly.
+function timestamp_seconds_to_datetime {
+  local ts
+  local tz
+  ts=$1
+  tz=$2
+  if [[ $(uname -s) == Linux ]]; then
+    eval "$tz date -d @$ts '+%Y-%m-%dT%H:%M:%S+%z'"
+  else
+    eval "$tz date -j -f %s $ts '+%Y-%m-%dT%H:%M:%S%z'"
+  fi
+}
+
 function title() {
     echo -ne "\033]0;$1\007"
+}
+
+# Reads from each line of stdin a single timestamp represented as seconds since
+# epoch and for each one returns a single line consisting of the input
+# timestamp, the date/time in the local time zone, and the date/time in UTC.
+# Each field is delimited by a space, and each date/time is in ISO 8601 format.
+function ts() {
+  local localtz
+  localtz=${1:+"TZ=$1"}
+  while read -r ts; do
+    local localdt
+    local utcdt
+    localdt=$(timestamp_seconds_to_datetime "$ts" "$localtz")
+    utcdt=$(timestamp_seconds_to_datetime "$ts" 'TZ=UTC')
+    echo "$ts $localdt $utcdt"
+  done
 }
