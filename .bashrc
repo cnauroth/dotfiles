@@ -197,10 +197,8 @@ fi
 # Unfortunately, the date utility is not standardized across platforms, so we
 # need to detect GNU vs. BSD and call the command correctly.
 function timestamp_seconds_to_datetime {
-  local ts
-  local tz
-  ts=$1
-  tz=$2
+  local ts=$1
+  local tz=$2
   if [[ $(uname -s) == Linux ]]; then
     eval "$tz date -d @$ts '+%Y-%m-%dT%H:%M:%S+%z'"
   else
@@ -221,8 +219,8 @@ function ts() {
   localtz=${1:+"TZ=$1"}
   while read -r ts; do
     local localdt
-    local utcdt
     localdt=$(timestamp_seconds_to_datetime "$ts" "$localtz")
+    local utcdt
     utcdt=$(timestamp_seconds_to_datetime "$ts" 'TZ=UTC')
     echo "$ts $localdt $utcdt"
   done
