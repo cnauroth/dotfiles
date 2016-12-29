@@ -150,9 +150,10 @@ export GRADLE_HOME=~/gradle-3.2
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
 export MAVEN_HOME=~/apache-maven-3.3.9
 export MAVEN_OPTS='-Xmx1G'
+export MONGO_HOME=~/mongodb-osx-x86_64-3.0.14-1-g8abafec
 export SCALA_HOME=~/scala-2.12.0
 
-export PATH=$ANT_HOME/bin:$GRADLE_HOME/bin:$MAVEN_HOME/bin:$SCALA_HOME/bin:$PATH
+export PATH=$ANT_HOME/bin:$GRADLE_HOME/bin:$MAVEN_HOME/bin:$MONGO_HOME/bin:$SCALA_HOME/bin:$PATH
 
 # Don't put duplicate lines in the history.
 export HISTCONTROL="ignoredups"
