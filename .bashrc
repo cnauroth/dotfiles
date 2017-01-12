@@ -145,15 +145,18 @@ set -o notify
 set -o ignoreeof
 
 export ANT_HOME=~/apache-ant-1.9.7
+export CASSANDRA_HOME=~/apache-cassandra-2.2.8
 export FINDBUGS_HOME=~/findbugs-1.3.9
 export GRADLE_HOME=~/gradle-3.2
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
 export MAVEN_HOME=~/apache-maven-3.3.9
 export MAVEN_OPTS='-Xmx1G'
 export MONGO_HOME=~/mongodb-osx-x86_64-3.0.14-1-g8abafec
+export PROTOC_HOME=~/protobuf-2.5.0
+export REDIS_HOME=~/redis-3.2.5
 export SCALA_HOME=~/scala-2.12.0
 
-export PATH=$ANT_HOME/bin:$GRADLE_HOME/bin:$MAVEN_HOME/bin:$MONGO_HOME/bin:$SCALA_HOME/bin:$PATH
+export PATH=$ANT_HOME/bin:$CASSANDRA_HOME/bin:$GRADLE_HOME/bin:$MAVEN_HOME/bin:$MONGO_HOME/bin:$PROTOC_HOME/src:$REDIS_HOME/src:$SCALA_HOME/bin:$PATH:~/um-scripts
 
 # Don't put duplicate lines in the history.
 export HISTCONTROL="ignoredups"
