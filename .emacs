@@ -1,11 +1,11 @@
 ; ~/.emacs
 
 (add-to-list 'load-path "~/emacs")
-(add-to-list 'load-path (expand-file-name "~/emacs/cedet/common"))
-(add-to-list 'load-path "~/emacs/ecb")
-(add-to-list 'load-path (expand-file-name "~/emacs/elib"))
-(add-to-list 'load-path (expand-file-name "~/emacs/jde/lisp"))
-(add-to-list 'load-path "/opt/local/share/scala-2.8/misc/scala-tool-support/emacs")
+;(add-to-list 'load-path (expand-file-name "~/emacs/cedet/common"))
+;(add-to-list 'load-path "~/emacs/ecb")
+;(add-to-list 'load-path (expand-file-name "~/emacs/elib"))
+;(add-to-list 'load-path (expand-file-name "~/emacs/jde/lisp"))
+;(add-to-list 'load-path "/opt/local/share/scala-2.8/misc/scala-tool-support/emacs")
 
 ; Disable a bunch of unneeded clutter.
 (menu-bar-mode -1)
@@ -69,8 +69,8 @@
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 
 ; Maximize window on startup.
-(require 'maxframe)
-(add-hook 'window-setup-hook 'maximize-frame t)
+;(require 'maxframe)
+;(add-hook 'window-setup-hook 'maximize-frame t)
 
 ; Make the window a little bit transparent.
 (set-frame-parameter (selected-frame) 'alpha '(85 85))
@@ -91,22 +91,32 @@
 ;    (setq tab-width 4)
 ;    (setq defun-block-intro 4))
 
-(load-file "~/emacs/cedet/common/cedet.el")
+;(load-file "~/emacs/cedet/common/cedet.el")
 ; TODO: Execution stops here on re-eval for some reason.
 
-(global-ede-mode t)
-(semantic-load-enable-minimum-features)
-(require 'semantic-ia)
-(require 'ecb)
+;(global-ede-mode t)
+;(semantic-load-enable-minimum-features)
+;(require 'semantic-ia)
+;(require 'ecb)
 
-(require 'jde)
+;(require 'jde)
 
 (setq visible-bell t)
 
-(setq php-mode-force-pear 1)
-(load "php-mode")
+;(setq php-mode-force-pear 1)
+;(load "php-mode")
 
-(require `scala-mode-auto)
+;(require `scala-mode-auto)
+
+(require 'package) ;; You might already have this line
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize) ;; You might already have this line
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ; EOF
 (custom-set-faces
