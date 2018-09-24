@@ -145,18 +145,23 @@ set -o notify
 set -o ignoreeof
 
 export ANT_HOME=~/apache-ant-1.9.7
+export AWS_CLI_HOME=/usr/local/Cellar/awscli/1.14.40
 export CASSANDRA_HOME=~/apache-cassandra-2.2.8
 export FINDBUGS_HOME=~/findbugs-1.3.9
 export GRADLE_HOME=~/gradle-3.2
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export MAVEN_HOME=~/apache-maven-3.3.9
 export MAVEN_OPTS='-Xmx1G'
 export MONGO_HOME=~/mongodb-osx-x86_64-3.0.14-1-g8abafec
+export POSTGRES_HOME=/usr/local/Cellar/postgresql94/9.4.9_1
 export PROTOC_HOME=~/protobuf-2.5.0
 export REDIS_HOME=~/redis-3.2.5
 export SCALA_HOME=~/scala-2.12.0
+export TERRAFORM_HOME=~/terraform_0.11.2_darwin_amd64
 
-export PATH=$ANT_HOME/bin:$CASSANDRA_HOME/bin:$GRADLE_HOME/bin:$MAVEN_HOME/bin:$MONGO_HOME/bin:$PROTOC_HOME/src:$REDIS_HOME/src:$SCALA_HOME/bin:$PATH:~/um-scripts
+export PATH=$ANT_HOME/bin:$AWS_CLI_HOME/bin:$CASSANDRA_HOME/bin:$GRADLE_HOME/bin:$MAVEN_HOME/bin:$MONGO_HOME/bin:$POSTGRES_HOME/bin:$PROTOC_HOME/src:$REDIS_HOME/src:$SCALA_HOME/bin:$TERRAFORM_HOME:$PATH:~/um-scripts:~/gp-scripts
+
+# complete -C aws_completer aws
 
 # Don't put duplicate lines in the history.
 export HISTCONTROL="ignoredups"
