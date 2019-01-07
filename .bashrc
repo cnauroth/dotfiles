@@ -216,7 +216,7 @@ function timestamp_seconds_to_datetime {
 }
 
 function title() {
-    echo -ne "\033]0;$1\007"
+    echo -ne "\033]0;$*\007"
 }
 
 # Reads from each line of stdin a single timestamp represented as seconds since
