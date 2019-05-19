@@ -175,6 +175,7 @@ else
     alias ls='ls -hF -G'
 fi
 
+alias awk=/usr/bin/awk
 alias dir='ls -G --format=vertical'
 alias grep='grep --color'
 alias l='ls -CF'
@@ -184,6 +185,9 @@ alias ll='ls -l'
 alias mv='mv -i'
 alias rm='rm -i'
 alias vdir='ls -G --format=long'
+
+alias hjl='humanize-json-logs.py'
+alias rhop='redis-sentinel-hop.sh'
 
 if [[ $OSTYPE == *cygwin* ]]; then
     # Windows-specific alias for jumping to the C drive.
