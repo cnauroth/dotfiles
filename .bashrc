@@ -1,3 +1,13 @@
+shopt -s histappend
+shopt -s cmdhist
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
+export HISTCONTROL=ignoredups
+export HISTTIMEFORMAT='%F %T '
+export PROMPT_COMMAND='history -a'
+
+export CDPATH=.:~/git:~:/tmp
+
 # Color definitions, stolen from
 # https://wiki.archlinux.org/index.php/Color_Bash_Prompt
 
@@ -163,9 +173,6 @@ export PATH=$ANT_HOME/bin:$AWS_CLI_HOME/bin:$CASSANDRA_HOME/bin:$GRADLE_HOME/bin
 
 # complete -C aws_completer aws
 
-# Don't put duplicate lines in the history.
-export HISTCONTROL="ignoredups"
-
 alias cp='cp -i'
 
 if [[ $OSTYPE == *cygwin* ]]; then
@@ -238,3 +245,112 @@ function ts() {
     echo "$ts $localdt $utcdt"
   done
 }
+
+       # BASH_SUBSHELL
+       #        Incremented by one each time a subshell or subshell  environment
+       #        is spawned.  The initial value is 0.
+
+       # HISTCMD
+       #        The history number, or index in the history list, of the current
+       #        command.  If HISTCMD is unset, it loses its special  properties,
+       #        even if it is subsequently reset.
+
+       # SECONDS
+       #        Each time this parameter is referenced, the  number  of  seconds
+       #        since  shell  invocation is returned.  If a value is assigned to
+       #        SECONDS, the value returned upon subsequent  references  is  the
+       #        number  of seconds since the assignment plus the value assigned.
+       #        If SECONDS is unset, it loses its special properties, even if it
+       #        is subsequently reset.
+
+       # SHLVL  Incremented by one each time an instance of bash is started.
+
+       # HOSTFILE
+       #        Contains  the  name  of  a file in the same format as /etc/hosts
+       #        that should be read when the shell needs to complete a hostname.
+       #        The  list  of possible hostname completions may be changed while
+       #        the shell is running;  the  next  time  hostname  completion  is
+       #        attempted  after the value is changed, bash adds the contents of
+       #        the new file to the existing list.  If HOSTFILE is set, but  has
+       #        no value, bash attempts to read /etc/hosts to obtain the list of
+       #        possible hostname completions.   When  HOSTFILE  is  unset,  the
+       #        hostname list is cleared.
+
+       # /dev
+
+       # TIMEFORMAT
+       #        The  value of this parameter is used as a format string specify-
+       #        ing how the timing information for pipelines prefixed  with  the
+       #        time  reserved word should be displayed.  The % character intro-
+       #        duces an escape sequence that is expanded to  a  time  value  or
+       #        other  information.  The escape sequences and their meanings are
+       #        as follows; the braces denote optional portions.
+       #        %%        A literal %.
+       #        %[p][l]R  The elapsed time in seconds.
+       #        %[p][l]U  The number of CPU seconds spent in user mode.
+       #        %[p][l]S  The number of CPU seconds spent in system mode.
+       #        %P        The CPU percentage, computed as (%U + %S) / %R.
+
+       #        The optional p is a digit specifying the precision,  the  number
+       #        of fractional digits after a decimal point.  A value of 0 causes
+       #        no decimal point or fraction to be output.  At most three places
+       #        after  the  decimal  point may be specified; values of p greater
+       #        than 3 are changed to 3.  If p is not specified, the value 3  is
+       #        used.
+
+       #        The  optional l specifies a longer format, including minutes, of
+       #        the form MMmSS.FFs.  The value of p determines  whether  or  not
+       #        the fraction is included.
+
+       #        If  this  variable  is not set, bash acts as if it had the value
+       #        $'\nreal\t%3lR\nuser\t%3lU\nsys%3lS'.  If the value is null,  no
+       #        timing  information  is  displayed.  A trailing newline is added
+       #        when the format string is displayed.
+
+# traps
+# umask
+
+   # Readline Key Bindings
+
+   # Readline Variables
+
+       # The shell allows control over which commands are saved on  the  history
+       # list.  The HISTCONTROL and HISTIGNORE variables may be set to cause the
+       # shell to save only a subset of the commands entered.  The cmdhist shell
+       # option,  if enabled, causes the shell to attempt to save each line of a
+       # multi-line command in the same history entry, adding  semicolons  where
+       # necessary  to preserve syntactic correctness.  The lithist shell option
+       # causes the shell to save the command with embedded newlines instead  of
+       # semicolons.  See the description of the shopt builtin below under SHELL
+       # BUILTIN  COMMANDS  for  information  on  setting  and  unsetting  shell
+       # options.
+
+       # Several shell options settable with the shopt builtin may  be  used  to
+       # tailor  the  behavior  of  history  expansion.  If the histverify shell
+       # option is enabled (see the description of the shopt builtin), and read-
+       # line is being used, history substitutions are not immediately passed to
+       # the shell parser.  Instead, the expanded  line  is  reloaded  into  the
+       # readline editing buffer for further modification.  If readline is being
+       # used, and the histreedit shell option is enabled, a failed history sub-
+       # stitution will be reloaded into the readline editing buffer for correc-
+       # tion.  The -p option to the history builtin command may be used to  see
+       # what a history expansion will do before using it.  The -s option to the
+       # history builtin may be used to add commands to the end of  the  history
+       # list  without  actually  executing them, so that they are available for
+       # subsequent recall.
+
+              # cdspell If set, minor errors in the spelling of a directory com-
+              #         ponent  in  a  cd command will be corrected.  The errors
+              #         checked for are transposed characters, a missing charac-
+              #         ter,  and  one  character  too many.  If a correction is
+              #         found, the corrected file name is printed, and the  com-
+              #         mand  proceeds.  This option is only used by interactive
+              #         shells.
+
+              # hostcomplete
+              #         If set, and readline is being used, bash will attempt to
+              #         perform  hostname  completion when a word containing a @
+              #         is  being  completed  (see  Completing  under   READLINE
+              #         above).  This is enabled by default.
+
+       # trap [-lp] [[arg] sigspec ...]
