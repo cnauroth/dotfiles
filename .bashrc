@@ -196,6 +196,9 @@ alias vdir='ls -G --format=long'
 alias hjl='humanize-json-logs.py'
 alias rhop='redis-sentinel-hop.sh'
 
+alias j8="export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)"
+alias j11="export JAVA_HOME=$(/usr/libexec/java_home -v 11)"
+
 if [[ $OSTYPE == *cygwin* ]]; then
     # Windows-specific alias for jumping to the C drive.
     alias c:='cd /cygdrive/c'
